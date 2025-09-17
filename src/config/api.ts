@@ -1,10 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: process.env.CLOCKIFY_API_URL || 'https://api.clockify.me/api/v1',
-  headers: {
-    "X-Api-Key": `${process.env.CLOCKIFY_API_TOKEN}`,
-  },
+  baseURL: process.env.CLOCKIFY_API_URL || "https://api.clockify.me/api/v1",
 });
 
 export const SERVER_CONFIG = {
@@ -34,6 +31,13 @@ export const TOOLS_CONFIG = {
       name: "get-current-user",
       description:
         "Get the current user id and name, to search for entries is required to have the user id",
+    },
+  },
+  reports: {
+    detailed: {
+      name: "generate-detailed-report",
+      description:
+        "Generate a detailed time entry report for specific users in a workspace",
     },
   },
   entries: {

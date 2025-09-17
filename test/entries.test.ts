@@ -1,5 +1,10 @@
 import { after, describe, it } from "node:test";
-import { createMcpClient, TEST_WORKSPACE_ID, TEST_PROJECT_ID } from "./setup";
+import {
+  createMcpClient,
+  TEST_WORKSPACE_ID,
+  TEST_PROJECT_ID,
+  TEST_CLOCKIFY_API_KEY,
+} from "./setup";
 import { McpResponse } from "../src/types";
 import assert from "node:assert";
 
@@ -21,6 +26,7 @@ describe("Entries MCP Tests", async () => {
     const response = (await client.callTool({
       name: "create-time-entry",
       arguments: {
+        clockifyApiKey: TEST_CLOCKIFY_API_KEY,
         workspaceId: TEST_WORKSPACE_ID,
         billable: true,
         description: "MCP Test Entry",
@@ -46,6 +52,7 @@ describe("Entries MCP Tests", async () => {
     const response = (await client.callTool({
       name: "create-time-entry",
       arguments: {
+        clockifyApiKey: TEST_CLOCKIFY_API_KEY,
         workspaceId: TEST_WORKSPACE_ID,
         billable: false,
         description: "MCP Test Entry with Project",
@@ -75,6 +82,7 @@ describe("Entries MCP Tests", async () => {
     const response = (await client.callTool({
       name: "edit-time-entry",
       arguments: {
+        clockifyApiKey: TEST_CLOCKIFY_API_KEY,
         workspaceId: TEST_WORKSPACE_ID,
         timeEntryId: createdEntryId,
         description: "MCP Test Entry Edited",
@@ -96,6 +104,7 @@ describe("Entries MCP Tests", async () => {
     const response = (await client.callTool({
       name: "delete-time-entry",
       arguments: {
+        clockifyApiKey: TEST_CLOCKIFY_API_KEY,
         workspaceId: TEST_WORKSPACE_ID,
         timeEntryId: createdEntryId,
       },

@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const CreateEntrySchema = z.object({
+  clockifyApiKey: z.string(),
   workspaceId: z.string(),
   billable: z.boolean(),
   description: z.string(),

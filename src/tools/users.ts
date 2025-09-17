@@ -1,16 +1,18 @@
 import { TOOLS_CONFIG } from "../config/api";
 import { usersService } from "../clockify-sdk/users";
-import {
-  ClockifyUser,
-  McpResponse,
-  McpToolConfigWithoutParameters,
-} from "../types";
+import { ClockifyUser, McpResponse, McpToolConfig } from "../types";
+import { z } from "zod";
 
-export const getCurrentUserTool: McpToolConfigWithoutParameters = {
+export const getCurrentUserTool: McpToolConfig = {
   name: TOOLS_CONFIG.users.current.name,
   description: TOOLS_CONFIG.users.current.description,
-  handler: async (): Promise<McpResponse> => {
-    const response = await usersService.getCurrent();
+  parameters: {
+    clockifyApiKey: z
+      .string()
+      .describe("Clockify API key used to authenticate the request"),
+  },
+  handler: async ({ clockifyApiKey }: { clockifyApiKey: string }): Promise<McpResponse> => {
+    const response = await usersService.getCurrent(clockifyApiKey);
 
     const user: ClockifyUser = {
       id: response.data.id,

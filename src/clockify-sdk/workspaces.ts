@@ -2,8 +2,12 @@ import { AxiosInstance } from "axios";
 import { api } from "../config/api";
 
 function WorkspacesService(api: AxiosInstance) {
-  async function fetchAll() {
-    return api.get(`workspaces`);
+  async function fetchAll(clockifyApiKey: string) {
+    return api.get(`workspaces`, {
+      headers: {
+        "X-Api-Key": clockifyApiKey,
+      },
+    });
   }
 
   return { fetchAll };
