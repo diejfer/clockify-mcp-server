@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const EditEntrySchema = z.object({
+  clockifyApiKey: z.string(),
   workspaceId: z.string(),
   timeEntryId: z.string(),
   billable: z.boolean().optional(),

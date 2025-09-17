@@ -2,8 +2,12 @@ import { AxiosInstance } from "axios";
 import { api } from "../config/api";
 
 function UsersService(api: AxiosInstance) {
-  async function getCurrent() {
-    return api.get("user");
+  async function getCurrent(clockifyApiKey: string) {
+    return api.get("user", {
+      headers: {
+        "X-Api-Key": clockifyApiKey,
+      },
+    });
   }
 
   return { getCurrent };

@@ -1,6 +1,10 @@
 import { after, describe, it } from "node:test";
 import assert from "node:assert";
-import { createMcpClient, TEST_WORKSPACE_ID } from "./setup";
+import {
+  createMcpClient,
+  TEST_WORKSPACE_ID,
+  TEST_CLOCKIFY_API_KEY,
+} from "./setup";
 import { ClockifyWorkspace, McpResponse } from "../src/types";
 
 describe("Workspaces MCP Tests", async () => {
@@ -13,6 +17,9 @@ describe("Workspaces MCP Tests", async () => {
   it("should list all user workspaces", async () => {
     const result = (await client.callTool({
       name: "get-workspaces",
+      arguments: {
+        clockifyApiKey: TEST_CLOCKIFY_API_KEY,
+      },
     })) as McpResponse;
 
     const workspaces: ClockifyWorkspace[] = JSON.parse(

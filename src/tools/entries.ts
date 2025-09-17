@@ -14,6 +14,9 @@ export const createEntryTool: McpToolConfig = {
   name: TOOLS_CONFIG.entries.create.name,
   description: TOOLS_CONFIG.entries.create.description,
   parameters: {
+    clockifyApiKey: z
+      .string()
+      .describe("Clockify API key used to authenticate the request"),
     workspaceId: z
       .string()
       .describe("The id of the workspace that gonna be saved the time entry"),
@@ -54,6 +57,9 @@ export const listEntriesTool: McpToolConfig = {
   name: TOOLS_CONFIG.entries.list.name,
   description: TOOLS_CONFIG.entries.list.description,
   parameters: {
+    clockifyApiKey: z
+      .string()
+      .describe("Clockify API key used to authenticate the request"),
     workspaceId: z
       .string()
       .describe("The id of the workspace that gonna search for the entries"),
@@ -109,6 +115,9 @@ export const deleteEntryTool: McpToolConfig = {
   name: TOOLS_CONFIG.entries.delete.name,
   description: TOOLS_CONFIG.entries.delete.description,
   parameters: {
+    clockifyApiKey: z
+      .string()
+      .describe("Clockify API key used to authenticate the request"),
     workspaceId: z
       .string()
       .describe("The id of the workspace where the time entry is located"),
@@ -136,6 +145,9 @@ export const editEntryTool: McpToolConfig = {
   name: TOOLS_CONFIG.entries.edit.name,
   description: TOOLS_CONFIG.entries.edit.description,
   parameters: {
+    clockifyApiKey: z
+      .string()
+      .describe("Clockify API key used to authenticate the request"),
     workspaceId: z
       .string()
       .describe("The id of the workspace where the time entry is located"),
@@ -158,7 +170,8 @@ export const editEntryTool: McpToolConfig = {
       if (!start) {
         const current = await entriesService.getById(
           params.workspaceId,
-          params.timeEntryId
+          params.timeEntryId,
+          params.clockifyApiKey
         );
         start = new Date(current.data.timeInterval.start);
       }

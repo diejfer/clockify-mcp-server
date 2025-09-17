@@ -9,6 +9,7 @@ import {
   ResourceTemplate,
 } from "@modelcontextprotocol/sdk/server/mcp";
 import { FindProjectSchema } from "../validation/projects/find-project-schema";
+import { GenerateDetailedReportSchema } from "../validation/reports/generate-detailed-report-schema";
 
 export type TCreateEntrySchema = z.infer<typeof CreateEntrySchema>;
 
@@ -19,6 +20,10 @@ export type TDeleteEntrySchema = z.infer<typeof DeleteEntrySchema>;
 export type TEditEntrySchema = z.infer<typeof EditEntrySchema>;
 
 export type TFindProjectSchema = z.infer<typeof FindProjectSchema>;
+
+export type TGenerateDetailedReportSchema = z.infer<
+  typeof GenerateDetailedReportSchema
+>;
 
 export interface ClockifyWorkspace {
   id: string;
@@ -37,8 +42,6 @@ export interface McpToolConfig {
   parameters: Record<string, any>;
   handler: (params: any) => Promise<McpResponse>;
 }
-
-export type McpToolConfigWithoutParameters = Omit<McpToolConfig, "parameters">;
 
 export interface McpTextContent {
   type: "text";
