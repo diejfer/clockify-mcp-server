@@ -63,12 +63,14 @@ export default function createStatelessServer({
   server.tool(
     getCurrentUserTool.name,
     getCurrentUserTool.description,
+    getCurrentUserTool.parameters,
     getCurrentUserTool.handler
   );
 
   server.tool(
     findWorkspacesTool.name,
     findWorkspacesTool.description,
+    findWorkspacesTool.parameters,
     findWorkspacesTool.handler
   );
 
