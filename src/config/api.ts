@@ -4,6 +4,10 @@ export const api = axios.create({
   baseURL: process.env.CLOCKIFY_API_URL || "https://api.clockify.me/api/v1",
 });
 
+export const reportsApi = axios.create({
+  baseURL: process.env.CLOCKIFY_REPORTS_API_URL || "https://reports.api.clockify.me/v1",
+});
+
 export const SERVER_CONFIG = {
   name: "Clockify MCP Server",
   version: "1.0.0",

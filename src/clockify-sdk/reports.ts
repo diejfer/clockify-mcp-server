@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { api } from "../config/api";
+import { reportsApi } from "../config/api";
 import { TGenerateDetailedReportSchema } from "../types";
 
 function withAuthHeader(clockifyApiKey: string) {
@@ -97,4 +97,4 @@ function ReportsService(apiClient: AxiosInstance) {
   return { generateDetailedReport };
 }
 
-export const reportsService = ReportsService(api);
+export const reportsService = ReportsService(reportsApi);
